@@ -1,0 +1,14 @@
+Vesuvio,[tomatsauce, ost, skinke, oregano],57
+Amerikaner,[tomatsauce, ost, oksefars, oregano],53
+Cacciatore,[tomatsauce, ost, pepperoni, oregano],57
+Carbona,[tomatsauce, ost, kødsauce, spaghetti, cocktailpølser, oregano],63
+Dennis,[tomatsauce, ost, skinke, pepperoni, cocktailpølser, oregano],65
+Bertil,[tomatsauce, ost, bacon, oregano],57
+Silvia,[tomatsauce, ost, pepperoni, rød peber, løg, oliven, oregano],61
+Victoria,[tomatsauce, ost, skinke, ananas, champignon, løg, oregano],61
+Toromfo,[tomatsauce, ost, skinke, bacon, kebab, chili, oregano],61
+Capricciosa,[tomatsauce, ost, skinke, champignon, oregano],61
+Hawai,[tomatsauce, ost, skinke, ananas, oregano],61
+LeBlissola,[tomatsauce, ost, skinke, rejer, oregano],61
+Venezia,[tomatsauce, ost, skinke, bacon, oregano],61
+Mafia,[tomatsauce, ost, pepperoni, bacon, løg, oregano],61
