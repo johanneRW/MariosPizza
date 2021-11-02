@@ -14,7 +14,7 @@ public class FileHandler {
         ps.close();
     }
 
-    public ArrayList<Pizza> readPendingPizza(String FILE_PATH) throws FileNotFoundException {
+    public ArrayList<Pizza> getAllPizzas(String FILE_PATH) throws FileNotFoundException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
         ArrayList<Pizza> pizzas = new ArrayList<>();

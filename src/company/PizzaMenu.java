@@ -12,7 +12,7 @@ public class PizzaMenu {
     public void printMenuKort() {
         ArrayList<Pizza> menuList = null;
         try {
-            menuList = fileHandler.readPendingPizza(menu);
+            menuList = fileHandler.getAllPizzas(menu);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
