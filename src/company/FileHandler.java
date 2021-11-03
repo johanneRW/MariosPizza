@@ -1,9 +1,10 @@
 package company;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class FileHandler {
 
@@ -31,10 +32,41 @@ public class FileHandler {
 
         return pizzas;
     }
+    public void saveNewOrder(String FILE_PATH, Order order) throws FileNotFoundException {
+        File file = new File(FILE_PATH);
+        PrintStream ps = new PrintStream(new FileOutputStream(file, true));
+        int counter = 1;
+        ps.println(counter + ". " +order.getPizzas() + "," + order.getTimeAdded());
+        counter++;
+        ps.close();
+    }
 
     public void deleteContents(String fileName, StringBuilder text) throws IOException {
         FileWriter myWriter = new FileWriter(fileName);
         myWriter.write(String.valueOf(text));
         myWriter.close();    }
+
+    public ArrayList<Order> getAllOrders(String ORDER_FILE_PATH) throws FileNotFoundException {
+        PizzaMenu Pizza = new PizzaMenu();
+        File file = new File(ORDER_FILE_PATH);
+        Scanner scanner = new Scanner(file);
+        ArrayList<Order> orders = new ArrayList<>();
+        Order order = null;
+        while (scanner.hasNext()) {
+            String found = scanner.nextLine();
+            String[] pizzas = found.substring(found.indexOf('.')+2, found.lastIndexOf(',')).split(" ");
+            String time = found.substring(found.lastIndexOf(',')+2);
+            System.out.println(time);
+            for (int i = 0; i < pizzas.length; i++) {
+            orders.add(new Order(Pizza.findPizza(pizzas[i].toLowerCase()),LocalTime.parse(time))); // https://stackoverflow.com/questions/30788369/coverting-string-to-localtime-with-without-nanoofseconds
+
+            }
+
+
+
+        }
+
+        return orders;
+    }
 
 }

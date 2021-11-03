@@ -1,18 +1,22 @@
 package company;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
-    public UserInterface() {
+    OrderInterface OrderInterface = new OrderInterface();
+
+    public UserInterface() throws FileNotFoundException {
         start();
     }
-    public void start() {
-        System.out.println("velkommen hos Marios Pizza");
+    public void start() throws FileNotFoundException {
+        System.out.println("Velkommen hos Marios Pizza");
         System.out.println("---------------------------");
 
         mainMenu();
     }
-    private void mainMenu() {
+    private void mainMenu() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
         while (isRunning) {
@@ -27,6 +31,7 @@ public class UserInterface {
             int selection = scanner.nextInt();
             switch (selection) {
                 case 1:
+                    OrderInterface.addOrder();
                     break;
                 case 2:
                     menu.printMenuKort();

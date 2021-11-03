@@ -17,7 +17,7 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return name + "\nIngredienser: \n" + getIngredients() + "\n" + prize + " kr";
+        return name;
     }
 
     public String getName() {
