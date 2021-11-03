@@ -37,8 +37,17 @@ public class UserInterface {
                     menu.printMenuKort();
                     break;
                 case 3:
+                    //TODO Arrayet med nuværende ordrer
+
+                    int counter = 1;
+                    for (Order order : OrderInterface.showOrders()) {
+                        System.out.println(counter + " - " + order );
+                        counter++;
+                    }
+
                     break;
                 case 4:
+                    //TODO fjerne bestem ordre fra Arrayet med nuværende ordre
                     break;
                 case 0:
                     System.out.println("Tak for at vælge Marios Pizza");
