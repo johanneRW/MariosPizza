@@ -2,14 +2,12 @@ package company;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Order {
     private ArrayList<Pizza> pizzas;
     private String timeAdded;
 
-    public Order(ArrayList<Pizza> listOfPizzas, String TimeAdded) {
+    public Order(ArrayList<Pizza> listOfPizzas, LocalTime TimeAdded) {
         this.pizzas = listOfPizzas;
         this.timeAdded = TimeAdded;
     }
