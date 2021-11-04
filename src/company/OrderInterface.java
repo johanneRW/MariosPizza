@@ -1,6 +1,7 @@
 package company;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class OrderInterface {
     private FileHandler fileHandler = new FileHandler();
     private static final String menuFile = "data/menu.txt";
     private static final String ordersFile = "data/orders.txt";
+        private static final String orderStatisticsFile = "data/orderStats.txt";
 
     public void addOrder() throws FileNotFoundException {
         System.out.println("Skriv venligst navnet på hvilke pizzaer der skal med i bestillingen fra den nedenstående liste(slut med 0):");
@@ -41,5 +43,14 @@ public class OrderInterface {
     public ArrayList<Order> showOrders() throws FileNotFoundException {
 
         return fileHandler.getAllOrders(ordersFile);
+    }
+    public void removeOrder() throws Exception {
+        System.out.println("Skriv venligst tallet på den ordre du gerne vil have færdiggjort");
+        int counter = 1;
+        for (Order order : showOrders()) {
+            System.out.println(counter + " - " + order );
+            counter++;
+        }        int number = scanner.nextInt();
+        fileHandler.removeOrder(ordersFile, orderStatisticsFile, number);
     }
 }

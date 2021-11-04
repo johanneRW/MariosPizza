@@ -1,5 +1,6 @@
 package company;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,16 +8,16 @@ public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
     OrderInterface OrderInterface = new OrderInterface();
 
-    public UserInterface() throws FileNotFoundException {
+    public UserInterface() throws Exception {
         start();
     }
-    public void start() throws FileNotFoundException {
+    public void start() throws Exception {
         System.out.println("Velkommen hos Marios Pizza");
         System.out.println("---------------------------");
 
         mainMenu();
     }
-    private void mainMenu() throws FileNotFoundException {
+    private void mainMenu() throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
         while (isRunning) {
@@ -37,17 +38,15 @@ public class UserInterface {
                     menu.printMenuKort();
                     break;
                 case 3:
-                    //TODO Arrayet med nuværende ordrer
-
                     int counter = 1;
                     for (Order order : OrderInterface.showOrders()) {
                         System.out.println(counter + " - " + order );
                         counter++;
                     }
-
                     break;
                 case 4:
                     //TODO fjerne bestem ordre fra Arrayet med nuværende ordre
+                    OrderInterface.removeOrder();
                     break;
                 case 0:
                     System.out.println("Tak for at vælge Marios Pizza");
