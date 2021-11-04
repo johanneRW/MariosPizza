@@ -49,6 +49,10 @@ public class UserInterface {
                 case 4:
                     //TODO fjerne bestem ordre fra Arrayet med nuværende ordre
                     break;
+
+                case 5:
+                    //TODO færdiggøre ordre.
+
                 case 0:
                     System.out.println("Tak for at vælge Marios Pizza");
                     isRunning = false;

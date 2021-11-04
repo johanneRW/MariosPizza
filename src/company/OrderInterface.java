@@ -1,8 +1,8 @@
 package company;
 
-import java.io.FileNotFoundException;
-import java.time.LocalTime;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class OrderInterface {
@@ -11,6 +11,7 @@ public class OrderInterface {
     private FileHandler fileHandler = new FileHandler();
     private static final String menuFile = "data/menu.txt";
     private static final String ordersFile = "data/orders.txt";
+    private static final String orderHistoryFile = "data/orderHistory.txt";
 
     public void addOrder() throws FileNotFoundException {
         System.out.println("Skriv venligst navnet på hvilke pizzaer der skal med i bestillingen fra den nedenstående liste(slut med 0):");
@@ -33,7 +34,7 @@ public class OrderInterface {
                 break;
             }
         }
-        LocalTime time = LocalTime.now();
+        String time = fileHandler.tidspunkt;
         Order order = new Order(listOfPizzas, time);
         fileHandler.saveNewOrder(ordersFile, order);
     }
@@ -42,4 +43,5 @@ public class OrderInterface {
 
         return fileHandler.getAllOrders(ordersFile);
     }
+
 }

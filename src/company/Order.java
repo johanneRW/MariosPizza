@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Order {
     private ArrayList<Pizza> pizzas;
-    private LocalTime timeAdded;
+    private String timeAdded;
 
-    public Order(ArrayList<Pizza> listOfPizzas, LocalTime TimeAdded) {
+    public Order(ArrayList<Pizza> listOfPizzas, String TimeAdded) {
         this.pizzas = listOfPizzas;
         this.timeAdded = TimeAdded;
     }
@@ -23,11 +23,11 @@ public class Order {
         this.pizzas = pizzas;
     }
 
-    public LocalTime getTimeAdded() {
+    public String getTimeAdded() {
         return timeAdded;
     }
 
-    public void setTimeAdded(LocalTime timeAdded) {
+    public void setTimeAdded(String timeAdded) {
         this.timeAdded = timeAdded;
     }
     @Override
