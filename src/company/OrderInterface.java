@@ -30,7 +30,6 @@ public class OrderInterface {
         String search = scanner.nextLine().trim().toLowerCase();
             if (!search.equals("0")) {
                 listOfPizzas.addAll(menu.findPizzas(search));
-
             } else {
                 break;
             }

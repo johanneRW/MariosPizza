@@ -2,9 +2,12 @@ package company;
 
 import java.io.*;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class FileHandler {
+
 
     public void saveNewPizza(String FILE_PATH, Pizza pizza) throws FileNotFoundException {
         File file = new File(FILE_PATH);
@@ -52,7 +55,6 @@ public class FileHandler {
             String found = scanner.nextLine();
             orders.add(found);
 
-
            /*String orderNumberText = found.substring(0, found.indexOf('.'));
             int orderNumber = Integer.parseInt(orderNumberText);
             String pizzaList = found.substring(found.indexOf('[') + 1, found.indexOf(']') - 1);
@@ -61,7 +63,6 @@ public class FileHandler {
 
             //for (String pizza : pizzas) {
                 orders.add(new Order(Pizza.findPizzas(pizzaList.toLowerCase()), LocalTime.parse(time),orderNumber)); // https://stackoverflow.com/questions/30788369/coverting-string-to-localtime-with-without-nanoofseconds
-
 */
         }
         return orders;
@@ -104,8 +105,6 @@ public class FileHandler {
             }
         }
         ps.close();
-
-
     }
      /*public void test(String order, String FILE_PATH, String FILE_PATH_FINAL, int number) throws IOException {
        ArrayList<Order> saved = null;

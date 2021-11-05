@@ -3,6 +3,8 @@ package company;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,7 +38,8 @@ public class Order {
     }
 
     public LocalTime getTimeAdded() {
-        return timeAdded;
+        LocalTime tidspunkt = LocalTime.now().truncatedTo( ChronoUnit.MINUTES );
+        return tidspunkt;
     }
 
     public int getNextOrderNumber() {
