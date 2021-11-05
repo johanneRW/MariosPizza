@@ -17,7 +17,7 @@ public class FileHandler {
         while (scanner.hasNext()) {
             String found = scanner.nextLine();
             String name= found.substring(0, found.indexOf(','));
-            String[] ingredients = found.substring(found.indexOf(',')+2,found.lastIndexOf(',')-1).split(" ");
+            String[] ingredients = found.substring(found.indexOf(',')+1,found.lastIndexOf(',')).split(" ");
             int price = Integer.parseInt(found.substring(found.lastIndexOf(',')+1));
 
             pizzas.add(new Pizza(name, ingredients, price));
