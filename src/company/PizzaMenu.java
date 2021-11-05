@@ -3,9 +3,6 @@ package company;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PizzaMenu {
     private FileHandler fileHandler = new FileHandler();

@@ -17,7 +17,6 @@ public class OrderInterface {
     public void addOrder() throws FileNotFoundException {
         System.out.println("Skriv venligst navnet på hvilke pizzaer der skal med i bestillingen fra den nedenstående liste(slut med 0):");
 
-
         ArrayList<Pizza> menuList = null;
         try {
             menuList = fileHandler.getAllPizzas(menuFile);

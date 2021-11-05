@@ -9,13 +9,6 @@ import java.util.*;
 public class FileHandler {
 
 
-    public void saveNewPizza(String FILE_PATH, Pizza pizza) throws FileNotFoundException {
-        File file = new File(FILE_PATH);
-        PrintStream ps = new PrintStream(new FileOutputStream(file, true));
-        ps.println(pizza.toString());
-        ps.close();
-    }
-
     public ArrayList<Pizza> getAllPizzas(String FILE_PATH) throws FileNotFoundException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
@@ -38,17 +31,11 @@ public class FileHandler {
         ps.close();
     }
 
-    public void deleteContents(String fileName, StringBuilder text) throws IOException {
-        FileWriter myWriter = new FileWriter(fileName);
-        myWriter.write(String.valueOf(text));
-        myWriter.close();    }
 
     public ArrayList<String> getAllOrders(String ORDER_FILE_PATH) throws FileNotFoundException {
-        PizzaMenu Pizza = new PizzaMenu();
         File file = new File(ORDER_FILE_PATH);
         Scanner scanner = new Scanner(file);
         ArrayList<String> orders = new ArrayList<>();
-       // Order order = null;
         while (scanner.hasNext()) {
             String found = scanner.nextLine();
             orders.add(found);

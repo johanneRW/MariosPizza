@@ -17,11 +17,6 @@ public class Order {
         this.timeAdded = TimeAdded;
         this.orderNumber=getNextOrderNumber();
     }
-   public Order(ArrayList<Pizza> listOfPizzas, LocalTime TimeAdded,int orderNumber) {
-       this.pizzas = listOfPizzas;
-       this.timeAdded = TimeAdded;
-       this.orderNumber = orderNumber;
-   }
 
     public int getOrderNumber() {
         return orderNumber;
