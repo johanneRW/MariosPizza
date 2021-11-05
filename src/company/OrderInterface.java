@@ -12,7 +12,7 @@ public class OrderInterface {
     private FileHandler fileHandler = new FileHandler();
     private static final String menuFile = "data/menu.txt";
     private static final String ordersFile = "data/orders.txt";
-        private static final String orderStatisticsFile = "data/orderStats.txt";
+        private static final String orderHistoryFile = "data/orderHistory.txt";
 
     public void addOrder() throws FileNotFoundException {
         System.out.println("Skriv venligst navnet på hvilke pizzaer der skal med i bestillingen fra den nedenstående liste(slut med 0):");
@@ -29,7 +29,7 @@ public class OrderInterface {
         while (true) {
         String search = scanner.nextLine().trim().toLowerCase();
             if (!search.equals("0")) {
-                listOfPizzas.addAll(menu.findPizza(search));
+                listOfPizzas.addAll(menu.findPizzas(search));
 
             } else {
                 break;
@@ -40,17 +40,20 @@ public class OrderInterface {
         fileHandler.saveNewOrder(ordersFile, order);
     }
 
-    public ArrayList<Order> showOrders() throws FileNotFoundException {
+    public ArrayList<String> showOrders() throws FileNotFoundException {
 
         return fileHandler.getAllOrders(ordersFile);
     }
     public void removeOrder() throws Exception {
-        System.out.println("Skriv venligst tallet på den ordre du gerne vil have færdiggjort");
+      /*  System.out.println("Skriv venligst tallet på den ordre du gerne vil have færdiggjort");
         int counter = 1;
         for (Order order : showOrders()) {
             System.out.println(counter + " - " + order );
             counter++;
         }        int number = scanner.nextInt();
-        fileHandler.removeOrder(ordersFile, orderStatisticsFile, number);
+        fileHandler.removeOrder(ordersFile, orderStatisticsFile, number);*/
+    }
+    public void sendOrderToArchive(int orderNumber)throws IOException {
+        fileHandler.sendOrderToArchive(ordersFile, orderHistoryFile, orderNumber);
     }
 }

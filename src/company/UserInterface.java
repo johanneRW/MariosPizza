@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
 
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
@@ -24,33 +25,34 @@ public class UserInterface {
             System.out.println("""
                                         
                     Foretag et valg:
-                    1) Opret en ordre
-                    2) Se Menukortet
+                    1) Se Menukortet
+                    2) Opret en ordre
                     3) Se alle aktive ordrer
-                    4) Fjern ordre
+                    4) Færdiggøre ordre
+                    5)Fjern ordre
                     0) Exit application""");
             int selection = scanner.nextInt();
             switch (selection) {
                 case 1:
-                    OrderInterface.addOrder();
+                    menu.printMenuKort();
                     break;
                 case 2:
-                    menu.printMenuKort();
+                    OrderInterface.addOrder();
                     break;
                 case 3:
                     int counter = 1;
-                    for (Order order : OrderInterface.showOrders()) {
-                        System.out.println(counter + " - " + order );
-                        counter++;
+                    for (String order : OrderInterface.showOrders()) {
+                        System.out.println(order);
                     }
                     break;
                 case 4:
+                    System.out.println("Skriv ordrenummeret på ordren der skal arkiveres");
+                    int orderNumber = scanner.nextInt();
+                   OrderInterface.sendOrderToArchive(orderNumber);
+                    break;
+                case 5:
                     //TODO fjerne bestem ordre fra Arrayet med nuværende ordre
                     OrderInterface.removeOrder();
-                    break;
-
-                case 5:
-                    //TODO færdiggøre ordre.
 
                 case 0:
                     System.out.println("Tak for at vælge Marios Pizza");
