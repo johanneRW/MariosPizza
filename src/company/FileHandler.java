@@ -34,9 +34,7 @@ public class FileHandler {
     public void saveNewOrder(String FILE_PATH, Order order) throws FileNotFoundException {
         File file = new File(FILE_PATH);
         PrintStream ps = new PrintStream(new FileOutputStream(file, true));
-        //int counter = 1;
         ps.println(order.getOrderNumber()+ ". " +order.getPizzas() + ";" + order.getTimeAdded()+"/");
-        //counter++;
         ps.close();
     }
 
@@ -54,16 +52,6 @@ public class FileHandler {
         while (scanner.hasNext()) {
             String found = scanner.nextLine();
             orders.add(found);
-
-           /*String orderNumberText = found.substring(0, found.indexOf('.'));
-            int orderNumber = Integer.parseInt(orderNumberText);
-            String pizzaList = found.substring(found.indexOf('[') + 1, found.indexOf(']') - 1);
-
-            String time = found.substring(found.lastIndexOf(';')+1,found.lastIndexOf("/")-1);
-
-            //for (String pizza : pizzas) {
-                orders.add(new Order(Pizza.findPizzas(pizzaList.toLowerCase()), LocalTime.parse(time),orderNumber)); // https://stackoverflow.com/questions/30788369/coverting-string-to-localtime-with-without-nanoofseconds
-*/
         }
         return orders;
     }
@@ -106,30 +94,5 @@ public class FileHandler {
         }
         ps.close();
     }
-     /*public void test(String order, String FILE_PATH, String FILE_PATH_FINAL, int number) throws IOException {
-       ArrayList<Order> saved = null;
-        try {
-            saved = getAllOrders(FILE_PATH_FINAL);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        ;
-        Order issue = saved.get(number - 1);
-        saved.remove(issue);
-        StringBuilder sb = new StringBuilder();
-        int counter = 1;
-        for (Order s : saved) {
-            sb.append(counter + ". " + s + ";");
-        }
-        counter++;
-        deleteContents(FILE_PATH_FINAL, sb);
-        saveNewIssue(FILE_PATH, issue);
-    }
-
-    public void saveNewIssue(String FILE_PATH, Order order) throws FileNotFoundException {
-        File file = new File(FILE_PATH);
-        PrintStream ps = new PrintStream(new FileOutputStream(file, true));
-        ps.println(order);
-        ps.close();*/
     }
 

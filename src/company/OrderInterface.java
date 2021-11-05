@@ -43,15 +43,6 @@ public class OrderInterface {
 
         return fileHandler.getAllOrders(ordersFile);
     }
-    public void removeOrder() throws Exception {
-      /*  System.out.println("Skriv venligst tallet på den ordre du gerne vil have færdiggjort");
-        int counter = 1;
-        for (Order order : showOrders()) {
-            System.out.println(counter + " - " + order );
-            counter++;
-        }        int number = scanner.nextInt();
-        fileHandler.removeOrder(ordersFile, orderStatisticsFile, number);*/
-    }
     public void sendOrderToArchive(int orderNumber)throws IOException {
         fileHandler.sendOrderToArchive(ordersFile, orderHistoryFile, orderNumber);
     }

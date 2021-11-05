@@ -30,7 +30,6 @@ public class UserInterface {
                     2) Opret en ordre
                     3) Se alle aktive ordrer
                     4) Færdiggør ordre
-                    5) Fjern ordre
                     0) Exit application""");
                int selection = scanner.nextInt();
                switch (selection) {
@@ -48,12 +47,12 @@ public class UserInterface {
                        break;
                    case 4:
                        System.out.println("Skriv ordrenummeret på ordren der skal arkiveres");
+                       for (String order : OrderInterface.showOrders()) {
+                           System.out.println(order);
+                       }
                        int orderNumber = scanner.nextInt();
                        OrderInterface.sendOrderToArchive(orderNumber);
                        break;
-                   case 5:
-                       //TODO fjerne bestem ordre fra Arrayet med nuværende ordre
-                       OrderInterface.removeOrder();
                    case 0:
                        System.out.println("Tak for at vælge Marios Pizza");
                        isRunning = false;
