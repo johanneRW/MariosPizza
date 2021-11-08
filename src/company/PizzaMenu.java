@@ -28,7 +28,7 @@ public class PizzaMenu {
 
     public ArrayList<Pizza> findPizzas(String search) {
         addToPizzaList();
-            String[] searchPizzas = search.split(", ");
+        String[] searchPizzas = search.split(", ");
         ArrayList<Pizza> foundPizzas = new ArrayList<>();
         for (Pizza pizza : menuList) {
             for (String searchPizza : searchPizzas)
@@ -36,7 +36,6 @@ public class PizzaMenu {
                     foundPizzas.add(pizza);
                 }
         }
-
         return foundPizzas;
     }
 }
