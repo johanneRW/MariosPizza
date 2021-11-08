@@ -9,7 +9,6 @@ import java.util.logging.FileHandler;
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
     OrderInterface OrderInterface = new OrderInterface();
-    Statistik statistik = new Statistik();
 
     public UserInterface() throws Exception {
         start();
@@ -58,7 +57,7 @@ public class UserInterface {
                     OrderInterface.sendOrderToArchive(orderNumber);
                     break;
                 case 5:
-                    for (SalesCount sc: statistik.getPizzasHistory("data/orderHistory.txt")) {
+                    for (SalesCount sc: OrderInterface.getSalesStats()) {
                         System.out.println(sc);
                     }
                     break;

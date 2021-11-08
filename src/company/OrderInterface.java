@@ -39,10 +39,13 @@ public class OrderInterface {
     }
 
     public ArrayList<String> showOrders() throws FileNotFoundException {
-
         return fileHandler.getAllOrders(ordersFile);
     }
     public void sendOrderToArchive(int orderNumber)throws IOException {
         fileHandler.sendOrderToArchive(ordersFile, orderHistoryFile, orderNumber);
+    }
+
+    public ArrayList<SalesCount> getSalesStats() throws FileNotFoundException {
+        return fileHandler.getPizzasHistory(orderHistoryFile);
     }
 }
