@@ -40,13 +40,6 @@ public class Pizza {
             }
         }
         return sb.toString();
-/*
-       for (String s : this.ingredients){
-            sb.append(s);
-            sb.append(" ");
-        }
-        return sb.toString();*/
-
 
     }
 }
