@@ -23,6 +23,6 @@ public SalesCount(String pizzaName){
 
     @Override
     public String toString() {
-        return "pizzaName= " + pizzaName + ", count= " + count;
+        return "pizza= " + pizzaName + ", antal= " + count;
     }
 }
