@@ -1,10 +1,6 @@
 package company;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
 
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
@@ -38,7 +34,7 @@ public class UserInterface {
             int selection = scanner.nextInt();
             switch (selection) {
                 case 1:
-                    menu.printMenuKort();
+                    menu.printMenu();
                     break;
                 case 2:
                     OrderInterface.addOrder();
