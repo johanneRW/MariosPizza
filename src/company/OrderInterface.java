@@ -1,7 +1,5 @@
 package company;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +12,7 @@ public class OrderInterface {
     private static final String ORDERS_FILE = "data/orders.txt";
     private static final String ORDER_HISTORY_FILE = "data/orderHistory.txt";
 
-    public void addOrder() throws FileNotFoundException {
+    public void addOrder() {
         System.out.println("Skriv venligst navnet på hvilke pizzaer der skal med i bestillingen fra den nedenstående liste(slut med 0):");
         System.out.println(fileHandler.getAllPizzas(MENU_FILE));
         ArrayList<Pizza> listOfPizzas = new ArrayList<>();
@@ -26,20 +24,20 @@ public class OrderInterface {
                 break;
             }
             LocalTime time = LocalTime.now();
-            Order order = new Order(listOfPizzas, time);
+            Order order = new Order(listOfPizzas, time, fileHandler.getNextOrderNumber(ORDERS_FILE,ORDER_HISTORY_FILE));
             fileHandler.saveNewOrder(ORDERS_FILE, order);
         }
     }
 
-    public ArrayList<String> showOrders() throws FileNotFoundException {
+    public ArrayList<String> showOrders() {
         return fileHandler.getAllOrders(ORDERS_FILE);
     }
 
-    public void sendOrderToArchive(int orderNumber) throws IOException {
+    public void sendOrderToArchive(int orderNumber) {
         fileHandler.sendOrderToArchive(ORDERS_FILE, ORDER_HISTORY_FILE, orderNumber);
     }
 
-    public ArrayList<SalesCount> getSalesStats() throws FileNotFoundException {
+    public ArrayList<SalesCount> getSalesStats() {
         return fileHandler.getPizzasHistory(ORDER_HISTORY_FILE);
     }
 }

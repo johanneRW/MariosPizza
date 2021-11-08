@@ -1,23 +1,26 @@
 package company;
-
 import java.util.Scanner;
 
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
     OrderInterface OrderInterface = new OrderInterface();
 
-    public UserInterface() throws Exception {
-        start();
-    }
+    public UserInterface(){
+       try {
+           start();
+       }catch(FileReadException exception) {
+           System.out.println("Couldn't find a menu");
 
-    public void start() throws Exception {
+    }
+    }
+    public void start() {
         System.out.println("Velkommen hos Marios Pizza");
         System.out.println("---------------------------");
 
         mainMenu();
     }
 
-    private void mainMenu() throws Exception {
+    private void mainMenu(){
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
@@ -53,8 +56,8 @@ public class UserInterface {
                     OrderInterface.sendOrderToArchive(orderNumber);
                     break;
                 case 5:
-                    for (SalesCount sc : OrderInterface.getSalesStats()) {
-                        System.out.println(sc);
+                    for (SalesCount salesCount : OrderInterface.getSalesStats()) {
+                        System.out.println(salesCount);
                     }
                     break;
                 case 0:

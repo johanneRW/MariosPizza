@@ -9,11 +9,6 @@ public class SalesCount {
         this.count = count;
     }
 
-    public SalesCount(String pizzaName) {
-        this.pizzaName = pizzaName;
-        this.count = count;
-    }
-
     public int getCount() {
         return count;
     }

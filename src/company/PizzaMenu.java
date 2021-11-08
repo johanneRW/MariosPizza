@@ -10,12 +10,9 @@ public class PizzaMenu {
     ArrayList<Pizza> menuList = null;
 
     public void addToPizzaList() {
-        try {
             menuList = fileHandler.getAllPizzas(MENU_FILE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
-    }
+
 
     public void printMenu() {
         addToPizzaList();
