@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class PizzaMenu {
     private FileHandler fileHandler = new FileHandler();
-    private static final String menu = "data/menu.txt";
+    private static final String MENU_FILE = "data/menu.txt";
     ArrayList<Pizza> menuList = null;
 
     public void addToPizzaList() {
         try {
-            menuList = fileHandler.getAllPizzas(menu);
+            menuList = fileHandler.getAllPizzas(MENU_FILE);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public void printMenuKort() {
+    public void printMenu() {
         addToPizzaList();
         System.out.println("Alle pizzaer:");
         for (int i = 0; i < menuList.size(); i++) {

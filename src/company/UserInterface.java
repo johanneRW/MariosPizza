@@ -2,7 +2,6 @@ package company;
 
 import java.util.Scanner;
 
-
 public class UserInterface {
     PizzaMenu menu = new PizzaMenu();
     OrderInterface OrderInterface = new OrderInterface();
@@ -35,7 +34,7 @@ public class UserInterface {
             int selection = scanner.nextInt();
             switch (selection) {
                 case 1:
-                    menu.printMenuKort();
+                    menu.printMenu();
                     break;
                 case 2:
                     OrderInterface.addOrder();
