@@ -5,13 +5,13 @@ public class Pizza {
 
     private String name;
     private String[] ingredients;
-    private int prize;
+    private int price;
 
-    public Pizza(String name, String[] ingredients, int prize) {
+    public Pizza(String name, String[] ingredients, int price) {
 
         this.name = name;
         this.ingredients = ingredients;
-        this.prize = prize;
+        this.price = price;
     }
 
     @Override
@@ -23,8 +23,8 @@ public class Pizza {
         return name;
     }
 
-    public int getPrize() {
-        return prize;
+    public int getPrice() {
+        return price;
     }
 
     public String getIngredients() {

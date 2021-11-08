@@ -27,9 +27,6 @@ public class Order {
         return pizzas;
     }
 
-    public void setPizzas(ArrayList<Pizza> pizzas) {
-        this.pizzas = pizzas;
-    }
 
     public LocalTime getTimeAdded() {
         LocalTime tidspunkt = LocalTime.now().truncatedTo( ChronoUnit.MINUTES );
@@ -57,9 +54,7 @@ public class Order {
         }
         return -1;
     }
-    public void setTimeAdded(LocalTime timeAdded) {
-        this.timeAdded = timeAdded;
-    }
+
     @Override
     public String toString() {
         return pizzas + "\nOprettet:" + timeAdded;
