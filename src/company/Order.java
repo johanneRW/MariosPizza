@@ -12,10 +12,11 @@ public class Order {
     private LocalTime timeAdded;
     private int orderNumber;
 
-    public Order(ArrayList<Pizza> listOfPizzas, LocalTime TimeAdded) {
+
+    public Order(ArrayList<Pizza> listOfPizzas, LocalTime timeAdded) {
         this.pizzas = listOfPizzas;
-        this.timeAdded = TimeAdded;
-        this.orderNumber=getNextOrderNumber();
+        this.timeAdded = timeAdded;
+        this.orderNumber = getNextOrderNumber();
     }
 
     public int getOrderNumber() {
@@ -23,30 +24,28 @@ public class Order {
     }
 
     public ArrayList<Pizza> getPizzas() {
-
         return pizzas;
     }
 
-
     public LocalTime getTimeAdded() {
-        LocalTime tidspunkt = LocalTime.now().truncatedTo( ChronoUnit.MINUTES );
-        return tidspunkt;
+        LocalTime localTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
+        return localTime;
     }
 
     public int getNextOrderNumber() {
-        int linjerIOrdreListe = getLinesInFile("data/orders.txt");
-        int linjerIOrdreArkiv = getLinesInFile("data/orderHistory.txt");
-        return linjerIOrdreListe + linjerIOrdreArkiv + 1;
+        int linesInOrdersFile = getLinesInFile("data/orders.txt");
+        int linesInOrderHistoryFile = getLinesInFile("data/orderHistory.txt");
+        return linesInOrdersFile + linesInOrderHistoryFile + 1;
     }
 
-    public int getLinesInFile(String filename){
-        File file = new File(filename);
-        int lines=0;
+    public int getLinesInFile(String fileName) {
+        File file = new File(fileName);
+        int lines = 0;
         try {
             Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()){
+            while (scanner.hasNextLine()) {
                 scanner.nextLine();
-              lines++;
+                lines++;
             }
             return lines;
         } catch (FileNotFoundException e) {

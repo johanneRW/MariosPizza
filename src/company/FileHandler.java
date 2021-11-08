@@ -12,18 +12,19 @@ public class FileHandler {
         Pizza pizza = null;
         while (scanner.hasNext()) {
             String found = scanner.nextLine();
-            String name= found.substring(0, found.indexOf(','));
-            String[] ingredients = found.substring(found.indexOf(',')+1,found.lastIndexOf(',')).split(" ");
-            int price = Integer.parseInt(found.substring(found.lastIndexOf(',')+1));
+            String name = found.substring(0, found.indexOf(','));
+            String[] ingredients = found.substring(found.indexOf(',') + 1, found.lastIndexOf(',')).split(" ");
+            int price = Integer.parseInt(found.substring(found.lastIndexOf(',') + 1));
 
             pizzas.add(new Pizza(name, ingredients, price));
         }
         return pizzas;
     }
+
     public void saveNewOrder(String FILE_PATH, Order order) throws FileNotFoundException {
         File file = new File(FILE_PATH);
         PrintStream ps = new PrintStream(new FileOutputStream(file, true));
-        ps.println(order.getOrderNumber()+ ". " +order.getPizzas() + ";" + order.getTimeAdded()+"/");
+        ps.println(order.getOrderNumber() + ". " + order.getPizzas() + ";" + order.getTimeAdded() + "/");
         ps.close();
     }
 
@@ -40,10 +41,9 @@ public class FileHandler {
     }
 
 
-
-    public void sendOrderToArchive(String FILE_PATH, String STATS_FILE_PATH, int number) throws IOException {
+    public void sendOrderToArchive(String FILE_PATH, String ORDER_HISTORY_FILE_PATH, int number) throws IOException {
         File file = new File(FILE_PATH);
-        File stats = new File(STATS_FILE_PATH);
+        File stats = new File(ORDER_HISTORY_FILE_PATH);
         Scanner scanner = new Scanner(file);
 
         ArrayList<String> orders = getAllOrders(FILE_PATH);
@@ -81,38 +81,38 @@ public class FileHandler {
     }
 
 
-        public ArrayList<SalesCount> getPizzasHistory(String STATS_FILE_PATH) throws FileNotFoundException {
-            File file = new File(STATS_FILE_PATH);
-            Scanner scanner = new Scanner(file);
-            ArrayList<SalesCount> sales = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-                String found = scanner.nextLine();
-                int startOfOrder = found.indexOf("[");
-                int endOfOrder = found.indexOf("]");
-                String[] pizzaHistory = found.substring(startOfOrder + 1, endOfOrder).split(", ");
+    public ArrayList<SalesCount> getPizzasHistory(String ORDER_HISTORY_FILE_PATH) throws FileNotFoundException {
+        File file = new File(ORDER_HISTORY_FILE_PATH);
+        Scanner scanner = new Scanner(file);
 
-                for (int i = 0; i < pizzaHistory.length; i++) {
-                    String pizza=pizzaHistory[i];
-                    if (sales.size() == 0) {
+        ArrayList<SalesCount> sales = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String found = scanner.nextLine();
+            int startOfOrder = found.indexOf("[");
+            int endOfOrder = found.indexOf("]");
+            String[] pizzaHistory = found.substring(startOfOrder + 1, endOfOrder).split(", ");
+
+            for (String pizza : pizzaHistory) {
+                if (sales.size() == 0) {
+                    sales.add(new SalesCount(pizza, 1));
+                } else {
+                    boolean done = false;
+                    for (int j = 0; j < sales.size(); j++) {
+                        SalesCount sc = sales.get(j);
+                        if (sc.getPizzaName().equalsIgnoreCase(pizza)) {
+                            sc.count = sc.getCount() + 1;
+                            sales.set(j, sc);
+                            done = true;
+                        }
+                    }
+                    if (!done) {
                         sales.add(new SalesCount(pizza, 1));
-                    } else {
-                        boolean done = false;
-                        for (int j = 0; j < sales.size(); j++) {
-                            SalesCount sc = sales.get(j);
-                            if (sc.getPizzaName().equalsIgnoreCase(pizza)) {
-                                sc.count= sc.getCount()+1;
-                                sales.set(j, sc);
-                                done = true;
-                            }
-                        }
-                        if (!done){
-                            sales.add(new SalesCount(pizza, 1));
-                        }
                     }
                 }
             }
+        }
 
-            return sales;
+        return sales;
     }
 }
 

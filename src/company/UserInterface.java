@@ -45,15 +45,15 @@ public class UserInterface {
                     }
                     break;
                 case 4:
-                    System.out.println("Skriv ordrenummeret på ordren der skal arkiveres");
                     for (String order : OrderInterface.showOrders()) {
                         System.out.println(order);
                     }
+                    System.out.println("Skriv ordrenummeret på ordren der skal arkiveres.");
                     int orderNumber = scanner.nextInt();
                     OrderInterface.sendOrderToArchive(orderNumber);
                     break;
                 case 5:
-                    for (SalesCount sc: OrderInterface.getSalesStats()) {
+                    for (SalesCount sc : OrderInterface.getSalesStats()) {
                         System.out.println(sc);
                     }
                     break;
@@ -62,7 +62,7 @@ public class UserInterface {
                     isRunning = false;
                     break;
                 default:
-                    System.out.println("Ugyldigt valg-Vælg et tal fra menuen.");
+                    System.out.println("Ugyldigt valg - Vælg et tal fra menuen.");
                     break;
             }
         }
