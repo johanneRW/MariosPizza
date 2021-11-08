@@ -87,35 +87,35 @@ public class FileHandler {
         public ArrayList<SalesCount> getPizzasHistory(String STATS_FILE_PATH) throws FileNotFoundException {
             File file = new File(STATS_FILE_PATH);
             Scanner scanner = new Scanner(file);
-            ArrayList<SalesCount> salg = new ArrayList<>();
+            ArrayList<SalesCount> sales = new ArrayList<>();
             while (scanner.hasNextLine()) {
                 String found = scanner.nextLine();
-                int startPåOrdre = found.indexOf("[");
-                int slutPåOrdre = found.indexOf("]");
-                String[] pizzaHistorik = found.substring(startPåOrdre + 1, slutPåOrdre).split(", ");
+                int startOfOrder = found.indexOf("[");
+                int endOfOrder = found.indexOf("]");
+                String[] pizzaHistory = found.substring(startOfOrder + 1, endOfOrder).split(", ");
 
-                for (int i = 0; i < pizzaHistorik.length; i++) {
-                    String pizza=pizzaHistorik[i];
-                    if (salg.size() == 0) {
-                        salg.add(new SalesCount(pizza, 1));
+                for (int i = 0; i < pizzaHistory.length; i++) {
+                    String pizza=pizzaHistory[i];
+                    if (sales.size() == 0) {
+                        sales.add(new SalesCount(pizza, 1));
                     } else {
                         boolean done = false;
-                        for (int j = 0; j < salg.size(); j++) {
-                            SalesCount sc = salg.get(j);
+                        for (int j = 0; j < sales.size(); j++) {
+                            SalesCount sc = sales.get(j);
                             if (sc.getPizzaName().equalsIgnoreCase(pizza)) {
                                 sc.count= sc.getCount()+1;
-                                salg.set(j, sc);
+                                sales.set(j, sc);
                                 done = true;
                             }
                         }
                         if (!done){
-                            salg.add(new SalesCount(pizza, 1));
+                            sales.add(new SalesCount(pizza, 1));
                         }
                     }
                 }
             }
 
-            return salg;
+            return sales;
     }
 }
 
