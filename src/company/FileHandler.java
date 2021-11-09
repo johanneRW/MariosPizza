@@ -61,7 +61,7 @@ public class FileHandler {
     public String sendOrderToArchive(String FILE_PATH, String ORDER_HISTORY_FILE_PATH, int number){
         String result = "";
         File file = new File(FILE_PATH);
-        File stats = new File(ORDER_HISTORY_FILE_PATH);
+        File archiveFile = new File(ORDER_HISTORY_FILE_PATH);
         try {
             Scanner scanner = new Scanner(file);
 
@@ -77,7 +77,7 @@ public class FileHandler {
                     if (number == orderNumber) {
                         result = line;
                         // tilføj linje til arkiv
-                        PrintStream printStream = new PrintStream(new FileOutputStream(stats, true));
+                        PrintStream printStream = new PrintStream(new FileOutputStream(archiveFile, true));
                         printStream.println(line);
                         printStream.close();
                     }
