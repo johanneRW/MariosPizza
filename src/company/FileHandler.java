@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FileHandler {
 
-    public ArrayList<Pizza> getAllPizzas(String FILE_PATH) throws FileReadException {
+    public ArrayList<Pizza> getAllPizzas(String FILE_PATH){
         File file = new File(FILE_PATH);
         try {
             Scanner scanner = new Scanner(file);
@@ -21,16 +21,16 @@ public class FileHandler {
             }
             return pizzas;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             throw new FileReadException("Can't read from " + file, e);
         }
     }
 
-    public void saveNewOrder(String FILE_PATH, Order order) throws FileWriteException {
+    public void saveNewOrder(String FILE_PATH, Order order){
         File file = new File(FILE_PATH);
         try {
             PrintStream ps = new PrintStream(new FileOutputStream(file, true));
-            ps.println(order.getOrderNumber() + ". " + order.getPizzas() + ";" + order.getTimeAdded() + "/");
+            ps.println(order.getOrderNumber() + ". " + order.getPizzas() + ";"
+                    + order.getTimeAdded() + "/"+order.getPickUpTime()+ "/");
             ps.close();
         } catch (FileNotFoundException e) {
             throw new FileWriteException("Can't write to " + file, e);
@@ -38,24 +38,28 @@ public class FileHandler {
         }
     }
 
-    public ArrayList<String> getAllOrders(String ORDER_FILE_PATH) throws FileReadException {
+    public ArrayList<String> getAllOrders(String ORDER_FILE_PATH){
         File file = new File(ORDER_FILE_PATH);
+
         try {
             Scanner scanner = new Scanner(file);
             ArrayList<String> orders = new ArrayList<>();
+
             while (scanner.hasNext()) {
                 String foundLine = scanner.nextLine();
                 orders.add(foundLine);
             }
+
+            orders.sort(new OrderComparator());
             return orders;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             throw new FileReadException("Can't read from " + file, e);
         }
     }
 
 
-    public void sendOrderToArchive(String FILE_PATH, String ORDER_HISTORY_FILE_PATH, int number){
+    public String sendOrderToArchive(String FILE_PATH, String ORDER_HISTORY_FILE_PATH, int number){
+        String result = "";
         File file = new File(FILE_PATH);
         File stats = new File(ORDER_HISTORY_FILE_PATH);
         try {
@@ -71,6 +75,7 @@ public class FileHandler {
                 try {
 
                     if (number == orderNumber) {
+                        result = line;
                         // tilføj linje til arkiv
                         PrintStream printStream = new PrintStream(new FileOutputStream(stats, true));
                         printStream.println(line);
@@ -100,9 +105,10 @@ public class FileHandler {
            } catch (FileNotFoundException e) {
                throw new FileWriteException("Can't write to " + file, e);}
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             throw new FileReadException("Can't read from " + file, e);
         }
+
+        return result;
     }
 
 
@@ -137,10 +143,9 @@ public class FileHandler {
                     }
                 }
             }
-
+            sales.sort(new SalesCountComparator());
             return sales;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             throw new FileReadException("Can't read from " + file, e);
         }}
 
@@ -155,7 +160,6 @@ public class FileHandler {
                 }
                 return lines;
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
                 throw new FileReadException("Can't read from " + file, e);
             }
         }

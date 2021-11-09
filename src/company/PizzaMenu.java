@@ -1,7 +1,5 @@
 package company;
 
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class PizzaMenu {
@@ -18,7 +16,8 @@ public class PizzaMenu {
         addToPizzaList();
         System.out.println("Alle pizzaer:");
         for (int i = 0; i < menuList.size(); i++) {
-            System.out.println((i + 1) + ". " + menuList.get(i).getName() + "\n" + menuList.get(i).getIngredients() + "\n" + menuList.get(i).getPrice() + "kr.");
+            System.out.println((i + 1) + ". " + menuList.get(i).getName() + "\n" + menuList.get(i).getIngredients()
+                    + "\n" + menuList.get(i).getPrice() + "kr.");
         }
         System.out.println("____________________________________________");
     }

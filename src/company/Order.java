@@ -1,24 +1,36 @@
 package company;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Order {
     private ArrayList<Pizza> pizzas;
     private LocalTime timeAdded;
     private int orderNumber;
+    private LocalTime pickUpTime;
 
 
+    public Order(ArrayList<Pizza> listOfPizzas, LocalTime timeAdded, int orderNumber, LocalTime pickUpTime) {
+        this.pizzas = listOfPizzas;
+        this.timeAdded = timeAdded;
+        this.orderNumber = orderNumber;
+        this.pickUpTime = pickUpTime;
+
+    }
     public Order(ArrayList<Pizza> listOfPizzas, LocalTime timeAdded, int orderNumber) {
         this.pizzas = listOfPizzas;
         this.timeAdded = timeAdded;
         this.orderNumber = orderNumber;
-        //this.orderNumber = getNextOrderNumber();
+        this.pickUpTime = timeAdded.plusMinutes(10);
+
     }
+
+    public LocalTime getPickUpTime() {
+        return pickUpTime.truncatedTo(ChronoUnit.MINUTES);
+    }
+
 
     public int getOrderNumber() {
         return orderNumber;
@@ -29,12 +41,11 @@ public class Order {
     }
 
     public LocalTime getTimeAdded() {
-        LocalTime localTime = LocalTime.now().truncatedTo(ChronoUnit.MINUTES);
-        return localTime;
+        return timeAdded.truncatedTo(ChronoUnit.MINUTES);
     }
 
     @Override
     public String toString() {
-        return pizzas + "\nOprettet:" + timeAdded;
+        return pizzas + "\nOprettet:" + getTimeAdded() + ". Afhentes: " + getPickUpTime();
     }
 }
