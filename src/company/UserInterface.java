@@ -1,4 +1,5 @@
 package company;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -8,10 +9,10 @@ public class UserInterface {
     OrderInterface OrderInterface = new OrderInterface();
     Scanner scanner = new Scanner(System.in);
 
-    public UserInterface(){
+    public UserInterface() {
         try {
-           start();
-        }catch(FileReadException exception) {
+            start();
+        } catch (FileReadException exception) {
             System.out.println("Couldn't find the file needed");
         }
     }
@@ -23,7 +24,7 @@ public class UserInterface {
         mainMenu();
     }
 
-    private void mainMenu(){
+    private void mainMenu() {
         Scanner scanner = new Scanner(System.in);
         boolean isRunning = true;
 
@@ -82,15 +83,15 @@ public class UserInterface {
         }
     }
 
-    public void print (String output) {
+    public void print(String output) {
         System.out.println(output);
     }
 
-    public String getUserInput () {
+    public String getUserInput() {
         return scanner.nextLine().trim().toLowerCase();
     }
 
-    public LocalTime getPickupTime () {
+    public LocalTime getPickupTime() {
         print("Angiv et klokkeslæt (hh:mm)");
         String pickup = getUserInput();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");

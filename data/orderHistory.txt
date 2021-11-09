@@ -3,3 +3,4 @@
 7. [Amerikaner];13:00/22:45/
 3. [Dennis, Bertil];12:41/13:00/
 4. [Dennis, Bertil];12:42/13:00/
+6. [Vesuvio];13:00/13:10/

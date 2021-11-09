@@ -15,31 +15,32 @@ public class OrderInterface {
     }
 
 
-public ArrayList<Pizza> collectPizzaNames(UserInterface userInterface) {
-    // tilføj pizzaer til ordren indtil brugeren siger stop
-    ArrayList<Pizza> listOfPizzas = new ArrayList<>();
-    boolean doneAddingPizzas = false;
-    while (!doneAddingPizzas) {
-        String search = userInterface.getUserInput();
-        if (search.equals("0")) {
-            doneAddingPizzas = true;
-        } else {
-            ArrayList<Pizza> choices = menu.findPizzas(search);
-            if (choices.size() == 0) {
-                userInterface.print("Kunne ikke genkende pizza-navnene");
+    public ArrayList<Pizza> collectPizzaNames(UserInterface userInterface) {
+        // tilføj pizzaer til ordren indtil brugeren siger stop
+        ArrayList<Pizza> listOfPizzas = new ArrayList<>();
+        boolean doneAddingPizzas = false;
+        while (!doneAddingPizzas) {
+            String search = userInterface.getUserInput();
+            if (search.equals("0")) {
+                doneAddingPizzas = true;
             } else {
-                userInterface.print("Tilføjet til ordren: " + choices);
+                ArrayList<Pizza> choices = menu.findPizzas(search);
+                if (choices.size() == 0) {
+                    userInterface.print("Kunne ikke genkende pizza-navnene");
+                } else {
+                    userInterface.print("Tilføjet til ordren: " + choices);
+                }
+                listOfPizzas.addAll(choices);
             }
-            listOfPizzas.addAll(choices);
         }
+        return listOfPizzas;
     }
-    return listOfPizzas;
-}
+
     public void addQuickOrder(UserInterface userInterface) {
         ArrayList<Pizza> listOfPizzas = collectPizzaNames(userInterface);
         // opret en ny ordre
         LocalTime time = LocalTime.now();
-        int orderNumber = fileHandler.getNextOrderNumber(ORDERS_FILE,ORDER_HISTORY_FILE);
+        int orderNumber = fileHandler.getNextOrderNumber(ORDERS_FILE, ORDER_HISTORY_FILE);
         Order order = new Order(listOfPizzas, time, orderNumber);
         fileHandler.saveNewOrder(ORDERS_FILE, order);
         userInterface.print("Pizzaer i ordre: " + order);
@@ -49,7 +50,7 @@ public ArrayList<Pizza> collectPizzaNames(UserInterface userInterface) {
         ArrayList<Pizza> listOfPizzas = collectPizzaNames(userInterface);
         // opret en ny ordre
         LocalTime time = LocalTime.now();
-        int orderNumber = fileHandler.getNextOrderNumber(ORDERS_FILE,ORDER_HISTORY_FILE);
+        int orderNumber = fileHandler.getNextOrderNumber(ORDERS_FILE, ORDER_HISTORY_FILE);
         LocalTime pickUpTime = userInterface.getPickupTime();
         Order order = new Order(listOfPizzas, time, orderNumber, pickUpTime);
         fileHandler.saveNewOrder(ORDERS_FILE, order);

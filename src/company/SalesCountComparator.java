@@ -1,4 +1,5 @@
 package company;
+
 import java.util.Comparator;
 
 public class SalesCountComparator implements Comparator<SalesCount> {
@@ -8,7 +9,7 @@ public class SalesCountComparator implements Comparator<SalesCount> {
 
         if (sc1.count==sc2.count) {
             return 0;
-        } else if (sc1.count>sc1.count) {
+        } else if (sc1.count>sc2.count) {
             return -1;
         } else {
             return 1;
